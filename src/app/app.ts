@@ -9,13 +9,14 @@ import { RouterOutlet } from '@angular/router';
 })
 export class App {
   title = 'my-app';
-  name = 'WEB2081 App';
+  name = 'Nguyen Van A';
+  age = 25;
   //method
   sayHello() {
     console.log('Hello');
   }
 
-  math() {
-    console.log('1 + 1 = ?');
+  handleClick() {
+    console.log('Bạn đã click button');
   }
 }
