@@ -10,6 +10,7 @@ import { RouterOutlet } from '@angular/router';
 export class App {
   title = 'my-app';
   name = 'WEB2081 App';
+  //method
   sayHello() {
     console.log('Hello');
   }
