@@ -14,4 +14,8 @@ export class App {
   sayHello() {
     console.log('Hello');
   }
+
+  math() {
+    console.log('1 + 1 = ?');
+  }
 }
