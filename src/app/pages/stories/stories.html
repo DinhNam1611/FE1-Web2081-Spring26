@@ -1,48 +1,86 @@
-<h2>Danh sách truyện tranh</h2>
+<h2 class="text-2xl font-bold mb-4 text-gray-800">Danh sách truyện tranh</h2>
 
-<table [border]="4" class="w-full text-center">
-  <thead>
-    <tr>
-      <th>STT</th>
-      <th>Tiêu đề</th>
-      <th>Tác giả</th>
-      <th>Năm phát hành</th>
-      <th>Thể loại</th>
-      <th>Lượt xem</th>
-      <th>Ảnh</th>
-      <th>Trạng thái</th>
-    </tr>
-  </thead>
+<div class="overflow-x-auto">
+  <table class="w-full text-center border border-gray-300 rounded-lg overflow-hidden shadow-md">
+    <thead class="bg-gray-100 text-gray-700 uppercase text-sm">
+      <tr>
+        <th class="px-4 py-3 border">STT</th>
+        <th class="px-4 py-3 border">Tiêu đề</th>
+        <th class="px-4 py-3 border">Tác giả</th>
+        <th class="px-4 py-3 border">Năm phát hành</th>
+        <th class="px-4 py-3 border">Thể loại</th>
+        <th class="px-4 py-3 border">Lượt xem</th>
+        <th class="px-4 py-3 border">Ảnh</th>
+        <th class="px-4 py-3 border">Trạng thái</th>
+        <th class="px-4 py-3 border">Hành động</th>
+      </tr>
+    </thead>
 
-  <tbody>
-    @if (stories.length > 0 || stories == undefined) {
-      @for (story of stories; track story.title; let i = $index) {
+    <tbody class="text-gray-700">
+      @if (stories.length > 0 || stories == undefined) {
+        @for (story of stories; track story.title; let i = $index) {
+          <tr class="hover:bg-gray-50 transition">
+            <td class="px-4 py-3 border font-semibold">
+              {{ i + 1 }}
+            </td>
+
+            <td class="px-4 py-3 border font-medium">
+              {{ story.title }}
+            </td>
+
+            <td class="px-4 py-3 border">
+              {{ story.author }}
+            </td>
+
+            <td class="px-4 py-3 border">
+              {{ story.releaseYear }}
+            </td>
+
+            <td class="px-4 py-3 border">
+              {{ story.category }}
+            </td>
+
+            <td class="px-4 py-3 border font-semibold text-blue-600">
+              {{ story.views }}
+            </td>
+
+            <td class="px-4 py-3 border">
+              <img
+                [src]="story.image"
+                alt="{{ story.title }}"
+                class="w-16 h-16 object-cover rounded-md mx-auto shadow"
+              />
+            </td>
+
+            <td class="px-4 py-3 border font-semibold">
+              @if (story.views > 90000) {
+                <span class="text-red-500 bg-red-100 px-2 py-1 rounded"> 🔥 Hot </span>
+              }
+            </td>
+
+            <td class="px-4 py-3 border">
+              <button
+                (click)="editStory(i)"
+                class="bg-green-600 text-white py-1 px-3 rounded hover:bg-green-700 transition"
+              >
+                Sửa
+              </button>
+              <button
+                (click)="deleteStory(i)"
+                class="bg-red-600 text-white py-1 px-3 rounded hover:bg-red-700 transition ml-2"
+              >
+                Xóa
+              </button>
+            </td>
+          </tr>
+        }
+      }
+
+      @if (stories.length === 0) {
         <tr>
-          <td>{{ i + 1 }}</td>
-          <td>{{ story.title }}</td>
-          <td>{{ story.author }}</td>
-          <td>{{ story.releaseYear }}</td>
-          <td>{{ story.category }}</td>
-          <td>{{ story.views }}</td>
-
-          <td>
-            <img [src]="story.image" alt="{{ story.title }}" width="80" />
-          </td>
-
-          <td>
-            @if (story.views > 90000) {
-              🔥 Hot
-            } @else {
-              Bình thường
-            }
-          </td>
+          <td colspan="8" class="py-6 text-gray-500">Không có truyện nào</td>
         </tr>
       }
-    }
-    @if (stories.length === 0) {
-      <tr>
-        <td colspan="7">Không có truyện nào</td>
-      </tr>
-    }
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>

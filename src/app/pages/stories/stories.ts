@@ -30,8 +30,15 @@ export class Stories {
       author: 'Mikuzu',
       releaseYear: '2009',
       category: 'Phim hành động',
-      image: 'https://wallpapers.com/images/featured/bleach-anime-e0xxgoqm3leel7kq.jpg',
+      image: 'https://static.zerochan.net/Attack.on.Titan.full.2140394.jpg',
       views: 40000,
     },
   ];
+
+  deleteStory(index: Number) {
+    console.log('Ban da Click : ', index);
+  }
+  editStory(index: Number) {
+    console.log('Ban da Click : ', index);
+  }
 }
