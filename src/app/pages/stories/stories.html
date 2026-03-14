@@ -1,0 +1,48 @@
+<h2>Danh sách truyện tranh</h2>
+
+<table [border]="4" class="w-full text-center">
+  <thead>
+    <tr>
+      <th>STT</th>
+      <th>Tiêu đề</th>
+      <th>Tác giả</th>
+      <th>Năm phát hành</th>
+      <th>Thể loại</th>
+      <th>Lượt xem</th>
+      <th>Ảnh</th>
+      <th>Trạng thái</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @if (stories.length > 0 || stories == undefined) {
+      @for (story of stories; track story.title; let i = $index) {
+        <tr>
+          <td>{{ i + 1 }}</td>
+          <td>{{ story.title }}</td>
+          <td>{{ story.author }}</td>
+          <td>{{ story.releaseYear }}</td>
+          <td>{{ story.category }}</td>
+          <td>{{ story.views }}</td>
+
+          <td>
+            <img [src]="story.image" alt="{{ story.title }}" width="80" />
+          </td>
+
+          <td>
+            @if (story.views > 90000) {
+              🔥 Hot
+            } @else {
+              Bình thường
+            }
+          </td>
+        </tr>
+      }
+    }
+    @if (stories.length === 0) {
+      <tr>
+        <td colspan="7">Không có truyện nào</td>
+      </tr>
+    }
+  </tbody>
+</table>

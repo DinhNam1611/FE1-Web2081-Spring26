@@ -5,18 +5,5 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-root',
   imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.css',
 })
-export class App {
-  title = 'my-app';
-  name = 'Nguyen Van A';
-  age = 25;
-  //method
-  sayHello() {
-    console.log('Hello');
-  }
-
-  handleClick() {
-    alert('Bạn đã click button');
-  }
-}
+export class App {}
