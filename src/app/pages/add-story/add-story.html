@@ -1,0 +1,71 @@
+<div class="max-w-2xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-2xl">
+
+  <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">
+    Thêm Truyện Tranh
+  </h2>
+
+  <form [formGroup]="addForm" (ngSubmit)="submitForm()" class="space-y-5">
+
+    <!-- Tên truyện -->
+    <div>
+      <label class="block mb-1 text-sm font-medium text-gray-700">
+        Tên Truyện
+      </label>
+      <input
+        type="text"
+        formControlName="title"
+        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Nhập tên truyện"
+      />
+      @if (title?.invalid && title?.touched) {
+        <div class="text-red-500 text-sm mt-1">
+          Tên truyện không được để trống.
+        </div>
+      }
+    </div>
+
+    <!-- Tác giả -->
+    <div>
+      <label class="block mb-1 text-sm font-medium text-gray-700">
+        Tác giả
+      </label>
+      <input
+        type="text"
+        formControlName="author"
+        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Nhập tên tác giả"
+      />
+      @if (author?.invalid && author?.touched) {
+        <div class="text-red-500 text-sm mt-1">
+          Tác giả không được để trống.
+        </div>
+      }
+      
+    </div>
+
+    <!-- Lượt xem -->
+    <div>
+      <label class="block mb-1 text-sm font-medium text-gray-700">
+        Lượt xem
+      </label>
+      <input
+        type="number"
+        formControlName="views"
+        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Nhập lượt xem"
+      />
+      @if (views?.invalid && views?.touched) {
+        <div class="text-red-500 text-sm mt-1">
+          Lượt xem phải lớn hơn hoặc bằng 0.
+        </div>
+      }
+    </div>
+
+    <!-- Button -->
+    <div>
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300" [disabled]="addForm.invalid">Thêm truyện</button>
+    </div>
+
+  </form>
+  
+</div>

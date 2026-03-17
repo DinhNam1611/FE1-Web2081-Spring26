@@ -1,0 +1,66 @@
+<div class="max-w-2xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-2xl">
+
+  <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">
+    Thêm Truyện Tranh
+  </h2>
+
+  <form [formGroup]="addForm" (ngSubmit)="submitForm()" class="space-y-5">
+
+    <!-- Tên truyện -->
+    <div>
+      <label class="block mb-1 text-sm font-medium text-gray-700">
+        Tên Sản Phẩm
+      </label>
+      <input
+        type="text"
+        formControlName="name"
+        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Nhập tên sản phẩm"
+      />
+      @if (name?.invalid && name?.touched) {
+        <div class="text-red-500 text-sm mt-1">
+          Tên sản phẩm không được để trống.
+        </div>
+      }
+    </div>
+
+    <!-- Tác giả -->
+    <div>
+      <label class="block mb-1 text-sm font-medium text-gray-700">
+        Gia
+      </label>
+      <input
+        type="text"
+        formControlName="price"
+        class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Nhập giá sản phẩm"
+      />
+      @if (price?.invalid && price?.touched) {
+        <div class="text-red-500 text-sm mt-1">
+          Giá sản phẩm phai lon hon 0.
+        </div>
+      }
+    </div>
+
+    <!-- Lượt xem -->
+    <div>
+      <label class="block mb-1 text-sm font-medium text-gray-700">
+        Lượt xem
+      </label>
+      <select name="category" id="" formControlName="category" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <option value="">Chọn danh mục</option>
+        <option value="Do an">Do an</option>
+        <option value="Do uong">Do uong</option>
+        <option value="Trai Cay">Trai Cay</option>
+        <!-- Thêm các tùy chọn khác nếu cần -->
+      </select>
+    </div>
+
+    <!-- Button -->
+    <div>
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300" [disabled]="addForm.invalid">Thêm truyện</button>
+    </div>
+
+  </form>
+  
+</div>
