@@ -1,7 +1,7 @@
 <div class="max-w-2xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-2xl">
 
   <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">
-    Thêm Truyện Tranh
+    Thêm San Phẩm
   </h2>
 
   <form [formGroup]="addForm" (ngSubmit)="submitForm()" class="space-y-5">
@@ -58,9 +58,14 @@
 
     <!-- Button -->
     <div>
-      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300" [disabled]="addForm.invalid">Thêm truyện</button>
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300" [disabled]="addForm.invalid">{{loading ? 'Đang xử lý...' : 'Thêm sản Phẩm'}}</button>
     </div>
 
   </form>
-  
+
+    @if (success) {
+    <p style="color: green">{{ success }}</p>
+    } @if (error) {
+    <p style="color: red">{{ error }}</p>
+    }
 </div>

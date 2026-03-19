@@ -1,0 +1,38 @@
+{
+  "stories": [
+    {
+      "title": "Naruto",
+      "author": "dsakdksad",
+      "views": 400,
+      "id": 1
+    },
+    {
+      "title": "Doraemon",
+      "author": "sdadsad",
+      "views": 4444,
+      "id": 2
+    }
+  ],
+  "products": [
+    {
+      "name": "Banh Kem",
+      "price": "600000",
+      "category": "Do an",
+      "id": 1
+    }
+  ],
+  "users": [
+    {
+      "username": "Nam",
+      "email": "admin@gmail.com",
+      "password": "123456",
+      "id": 1
+    },
+    {
+      "username": "Linh",
+      "email": "linh@gmail.com",
+      "password": "123456",
+      "id": 2
+    }
+  ]
+}

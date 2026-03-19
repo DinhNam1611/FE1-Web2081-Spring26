@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -10,7 +11,11 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class Register {
   addForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  loading = false ; 
+  error = '';
+  success = '';
+  
+  constructor(private fb: FormBuilder , private http: HttpClient) {
     this.addForm = this.fb.group({
       username: ['', [Validators.required]],
       email: ['', [Validators.required]],
@@ -27,6 +32,24 @@ export class Register {
     return this.addForm.get('password');
   }
   submitForm() {
-    console.log(this.addForm.value);
+    this.loading = true;
+    this.error = '';
+    this.success = '';
+
+    const data = this.addForm.value;
+
+    this.http.post('http://localhost:3000/users' , data).subscribe({
+      next: () => {
+        this.loading = false;
+        this.success = "Dang ky thanh cong";
+        this.addForm.reset();
+        
+      },
+
+      error: () => {
+        this.loading  = false ;
+        this.error = 'Dang ky That Bai'
+      }
+    });
   }
 }

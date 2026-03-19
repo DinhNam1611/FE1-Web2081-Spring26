@@ -63,9 +63,15 @@
 
     <!-- Button -->
     <div>
-      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300" [disabled]="addForm.invalid">Thêm truyện</button>
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-300" [disabled]="addForm.invalid">  {{loading ? 'Đang xử lý...' : 'Thêm truyện'}} </button>
     </div>
 
   </form>
+
+ @if (success) {
+  <p style="color: green">{{ success }}</p>
+  } @if (error) {
+  <p style="color: red">{{ error }}</p>
+  }
   
 </div>
