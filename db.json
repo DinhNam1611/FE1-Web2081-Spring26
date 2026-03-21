@@ -1,12 +1,6 @@
 {
   "stories": [
     {
-      "title": "Naruto",
-      "author": "dsakdksad",
-      "views": 400,
-      "id": 1
-    },
-    {
       "title": "Doraemon",
       "author": "sdadsad",
       "views": 4444,
@@ -18,7 +12,15 @@
       "name": "Banh Kem",
       "price": "600000",
       "category": "Do an",
+      "views": 100000,
       "id": 1
+    },
+    {
+      "name": "Banh Kem",
+      "price": "600000",
+      "category": "Do an",
+      "views": 3000,
+      "id": 2
     }
   ],
   "users": [

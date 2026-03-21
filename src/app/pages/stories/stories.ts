@@ -1,44 +1,56 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-stories',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './stories.html',
   styleUrl: './stories.css',
 })
-export class Stories {
-  stories = [
-    {
-      title: 'Dragon Ball',
-      author: 'Oda',
-      releaseYear: '2006',
-      category: 'Truyện Tranh',
-      image:
-        'https://www.nicepng.com/png/detail/134-1346760_ultra-instinct-dragon-ball-super-son-goku.png',
-      views: 100000,
-    },
-    {
-      title: 'Attack On Titan',
-      author: 'Duoka',
-      releaseYear: '2008',
-      category: 'Anime',
-      image: 'https://wallpaperaccess.com/full/187123.jpg',
-      views: 70000,
-    },
-    {
-      title: 'Bleach',
-      author: 'Mikuzu',
-      releaseYear: '2009',
-      category: 'Phim hành động',
-      image: 'https://static.zerochan.net/Attack.on.Titan.full.2140394.jpg',
-      views: 40000,
-    },
-  ];
+export class Stories implements OnInit {
+  stories: any = [];
+  loading = false;
+  error = '';
+  deletingId: number | null = null;
 
-  deleteStory(index: Number) {
-    console.log('Ban da Click : ', index);
+  constructor(private http: HttpClient) {}
+
+  ngOnInit() {
+    this.getStories();
   }
-  editStory(index: Number) {
-    console.log('Ban da Click : ', index);
+
+  getStories() {
+    this.loading = true;
+    this.error = '';
+    this.http.get<any[]>('http://localhost:3000/stories').subscribe({
+      next: (data) => {
+        this.loading = false;
+        this.stories = data;
+      },
+      error: () => {
+        this.loading = false;
+        this.error = 'Co loi xay ra';
+      },
+    });
+  }
+  deleteStory(id: number) {
+    const confirmDelete = confirm("Ban co chac muon xoa story nay khong?");
+    if (!confirmDelete) {
+      return;
+    }
+     this.deletingId = id;
+    this.http.delete(`http://localhost:3000/stories/${id}`).subscribe({
+      next: ()=> {
+        this.getStories();
+        this.deletingId = null;
+        alert("Xoa story thanh cong");
+      },
+      error: () => {
+        this.deletingId = null;
+        alert("Co loi xay ra khi xoa story");
+      }
+    })
   }
 }
+
