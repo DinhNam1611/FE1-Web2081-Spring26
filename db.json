@@ -1,10 +1,22 @@
 {
   "stories": [
     {
-      "title": "Doraemon",
-      "author": "sdadsad",
-      "views": 4444,
+      "title": "One Piece",
+      "author": "Kimura",
+      "views": 55,
+      "id": 1
+    },
+    {
+      "title": "Naruto",
+      "author": "Nomura",
+      "views": 88,
       "id": 2
+    },
+    {
+      "title": "Dragon Ball Z",
+      "author": "Nomura",
+      "views": 88,
+      "id": 3
     }
   ],
   "products": [
