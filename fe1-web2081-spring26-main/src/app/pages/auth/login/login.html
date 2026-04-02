@@ -1,1 +1,36 @@
-<p>login works!</p>
+<div class="p-6 max-w-md mx-auto">
+    <h1 class="text-2xl font-semibold mb-6">Đăng Nhập</h1>
+
+    <form [formGroup]="loginForm" (ngSubmit)="submitForm()" class="space-y-6">
+
+        <div>
+            <label class="block font-medium mb-1">Email</label>
+            <input formControlName="email" type="email" class="w-full border rounded-lg px-3 py-2" />
+        </div>
+        @if (email?.invalid && email?.touched) {
+        <div class="text-red-500 text-sm mt-1">
+            @if(email?.errors?.['required']) {
+            Email không được để trống.
+            }
+            @if(email?.errors?.['email']) {
+            Email không Không Hợp Lệ.
+            }
+        </div>
+        }
+
+        <div>
+            <label class="block font-medium mb-1">Mật khẩu</label>
+            <input formControlName="password" type="password" class="w-full border rounded-lg px-3 py-2" />
+        </div>
+
+        @if (password?.invalid && password?.touched) {
+        <div class="text-red-500 text-sm mt-1">
+            @if(password?.errors?.['required']) {
+            Mật khẩu không được để trống.
+            }
+        </div>
+        }
+
+        <button type="submit" class="px-5 py-2 bg-blue-600 text-white rounded-lg w-full">Đăng Nhập</button>
+    </form>
+</div>

@@ -1,1 +1,60 @@
-<p>register works!</p>
+<div class="p-6 max-w-md mx-auto">
+    <h1 class="text-2xl font-semibold mb-6">Đăng ký</h1>
+
+    <form [formGroup]="registerForm" (ngSubmit)="submitForm()" class="space-y-6">
+        <div>
+            <label class="block font-medium mb-1">UserName</label>
+            <input formControlName="username" type="text" class="w-full border rounded-lg px-3 py-2" />
+        </div>
+        
+
+        <div>
+            <label class="block font-medium mb-1">Email</label>
+            <input formControlName="email" type="email" class="w-full border rounded-lg px-3 py-2" />
+        </div>
+
+        @if (email?.invalid && email?.touched) {
+        <div class="text-red-500 text-sm mt-1">
+            @if(email?.errors?.['required']) {
+            Email không được để trống.
+            }
+            @if(email?.errors?.['email']) {
+            Email không Không Hợp Lệ.
+            }
+        </div>
+        }
+
+        <div>
+            <label class="block font-medium mb-1">Mật khẩu</label>
+            <input formControlName="password" type="password" class="w-full border rounded-lg px-3 py-2" />
+        </div>
+
+        @if (password?.invalid && password?.touched) {
+        <div class="text-red-500 text-sm mt-1">
+            @if(password?.errors?.['required']) {
+            Mật khẩu không được để trống.
+            }
+        </div>
+        }
+        <div>
+            <label class="block font-medium mb-1">Xác Nhận Mật khẩu</label>
+            <input formControlName="confirmPassword" type="password" class="w-full border rounded-lg px-3 py-2" />
+        </div>
+        @if (confirmPassword?.invalid && confirmPassword?.touched) {
+        <div class="text-red-500 text-sm mt-1">
+            @if(confirmPassword?.errors?.['required']) {
+                Xác nhận mật khẩu không được để trống.
+            }
+            @if(confirmPassword?.errors?.['minLength']) {
+                Mật khẩu xác nhận không khớp.
+            }
+
+            @if(error){
+                {{error}}
+            }
+        </div>
+        }
+
+        <button [disabled]="registerForm.invalid" type="submit" class="px-5 py-2 bg-blue-600 text-white rounded-lg w-full">Đăng ký</button>
+    </form>
+</div>

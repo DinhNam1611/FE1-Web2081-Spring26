@@ -5,5 +5,19 @@
       "id": 1
     }
   ],
-  "users": []
+  "users": [
+    {
+      "email": "admin@gmai.com",
+      "password": "$2a$10$I1lqnOAFdTUFqKVZJ4nlGuBWtPHiZs7kQ1c//LZLHJypW5S6Begpe",
+      "username": "Dinh Nam",
+      "id": 1
+    },
+    {
+      "email": "admin1@gmail.com",
+      "password": "$2a$10$IRcyyo9TySLrFzoH58bkVO4/k4M2ES7wuM82PYH5DcHQ3sR34v9zu",
+      "username": "Name",
+      "confirmPassword": "dinhnam123",
+      "id": 2
+    }
+  ]
 }
