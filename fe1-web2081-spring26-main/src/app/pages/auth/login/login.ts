@@ -1,6 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,7 +14,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
-export class Login {
+export class Login implements OnInit {
   loginForm: FormGroup;
 
   constructor(
@@ -23,11 +28,17 @@ export class Login {
     });
   }
 
+  ngOnInit() {
+    if (localStorage.getItem('token')) {
+      this.router.navigateByUrl('/stories');
+    }
+  }
+
   get email() {
     return this.loginForm.get('email');
   }
   get password() {
-    return this.loginForm.get('password');
+    return this.loginForm.get('password');    
   }
 
   submitForm() {
@@ -38,10 +49,11 @@ export class Login {
 
     const data = this.loginForm.value;
 
-    this.http.post('http://localhost:3000/login', data).subscribe({
-      next: () => {
+    this.http.post<any>('http://localhost:3000/login', data).subscribe({
+      next: (res) => {
         alert('Dang Nhap Thanh Cong');
-        localStorage.setItem('user', JSON.stringify(data));
+        localStorage.setItem('token', res.accessToken);
+        localStorage.setItem('user', JSON.stringify(res.user));
         this.router.navigateByUrl('/stories');
       },
       error(err) {

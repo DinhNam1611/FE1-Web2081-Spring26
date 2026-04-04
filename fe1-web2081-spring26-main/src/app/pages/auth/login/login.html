@@ -28,6 +28,9 @@
             @if(password?.errors?.['required']) {
             Mật khẩu không được để trống.
             }
+            @if(password?.errors?.['minlength']) {
+            Mật khẩu phải có ít nhất 6 ký tự.
+            }
         </div>
         }
 

@@ -18,6 +18,19 @@
       "username": "Name",
       "confirmPassword": "dinhnam123",
       "id": 2
+    },
+    {
+      "email": "adminnn@gmail.com",
+      "password": "$2a$10$JwEHmHAPMDHvPuTPoETekesQ3fe0gQDKlQzsZV7dnL2CMPtsM482.",
+      "username": "DinhNam",
+      "id": 3
+    },
+    {
+      "email": "dinhnam@gmail.com",
+      "password": "$2a$10$8htlGGMnqMv5SOglpIuY.Ogck.KKB.mI2eKEpDWhPEt5KwxQ/QCZu",
+      "username": "DinhNam",
+      "confirmPassword": "dinhnam123",
+      "id": 4
     }
   ]
 }

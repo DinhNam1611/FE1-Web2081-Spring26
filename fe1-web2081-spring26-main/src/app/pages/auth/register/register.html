@@ -34,6 +34,9 @@
             @if(password?.errors?.['required']) {
             Mật khẩu không được để trống.
             }
+            @if(password?.errors?.['minlength']) {
+            Mật khẩu phải có ít nhất 6 ký tự.
+            }
         </div>
         }
         <div>
@@ -43,17 +46,14 @@
         @if (confirmPassword?.invalid && confirmPassword?.touched) {
         <div class="text-red-500 text-sm mt-1">
             @if(confirmPassword?.errors?.['required']) {
-                Xác nhận mật khẩu không được để trống.
+            Xác nhận mật khẩu không được để trống.
             }
-            @if(confirmPassword?.errors?.['minLength']) {
-                Mật khẩu xác nhận không khớp.
-            }
-
-            @if(error){
-                {{error}}
+            @if(confirmPassword?.errors?.['mismatch']) {
+            Mật khẩu xác nhận không khớp.
             }
         </div>
         }
+        
 
         <button [disabled]="registerForm.invalid" type="submit" class="px-5 py-2 bg-blue-600 text-white rounded-lg w-full">Đăng ký</button>
     </form>

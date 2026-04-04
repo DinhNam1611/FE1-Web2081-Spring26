@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Form, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import {  Router } from '@angular/router';
 
@@ -9,7 +9,7 @@ import {  Router } from '@angular/router';
   templateUrl: './register.html',
   styleUrl: './register.css',
 })
-export class Register {
+export class Register implements OnInit {
   registerForm: FormGroup;
   error = '';
 
@@ -23,7 +23,23 @@ export class Register {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]],
-    });
+    }, { validators: this.passwordMatchValidator });
+  }
+
+  ngOnInit() {
+    if (localStorage.getItem('token')) {
+      this.router.navigateByUrl('/stories');
+    }
+  }
+
+  passwordMatchValidator(form: FormGroup) {
+    const password = form.get('password');
+    const confirmPassword = form.get('confirmPassword');
+    if (password && confirmPassword && password.value !== confirmPassword.value) {
+      confirmPassword.setErrors({ mismatch: true });
+      return { mismatch: true };
+    }
+    return null;
   }
 
   get email() {
@@ -41,13 +57,7 @@ export class Register {
       this.registerForm.markAllAsTouched();
       return;
     }
-
     const data = this.registerForm.value;
-
-    if (data.password != data.confirmPassword) {
-      this.error = "Xác Nhận Mật Khẩu Không Khớp"
-      return;
-    }
 
     this.http.post('http://localhost:3000/register', data).subscribe({
       next: () => {
